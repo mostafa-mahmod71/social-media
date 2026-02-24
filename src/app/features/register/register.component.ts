@@ -8,11 +8,11 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -69,8 +69,11 @@ export class RegisterComponent {
       this.registerform.markAllAsTouched();
     }
   }
-
-  loginR(): void {
-    this.router.navigate(['login']);
+  showpass(pass: HTMLInputElement): void {
+    if (pass.type === 'password') {
+      pass.type = 'text';
+    } else {
+      pass.type = 'password';
+    }
   }
 }

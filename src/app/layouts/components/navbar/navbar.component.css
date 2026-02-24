@@ -1,8 +1,8 @@
 .activeLink {
   font-weight: 600;
-  text-decoration: underline;
   text-decoration-color: var(--color-maincolor);
+  text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 8px;
-  background-color: var(--color-gray-100);
+  color: var(--color-maincolor);
 }

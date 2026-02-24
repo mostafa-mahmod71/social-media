@@ -1,10 +1,7 @@
-<!-- Navbar -->
 <nav
   class="bg-white/50 backdrop-blur-md border-b border-gray-100 px-6 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50"
 >
-  <!-- جهة اليسار: Logo Circle + Text -->
   <div class="flex items-center space-x-3 flex-shrink-0">
-    <!-- دائرة اللوجو -->
     <div
       class="w-10 h-10 rounded-full overflow-hidden border-2 border-[var(--color-maincolor)] shadow-sm"
     >
@@ -23,7 +20,6 @@
     </a>
   </div>
 
-  <!-- المنتصف: Links inside a White Rounded Border Container -->
   <div
     class="hidden md:flex items-center bg-white border border-gray-200 rounded-full px-2 py-1 shadow-sm space-x-1"
   >
@@ -31,19 +27,20 @@
       routerLink="/feed"
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
-      class="text-maincolor font-medium px-4 py-1.5 rounded-full hover:bg-gray-50 transition-all hover:underline decoration-2 underline-offset-8"
-      >Feed</a
+      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
+    >
+      Feed</a
     >
     <a
       routerLink="/profile"
       routerLinkActive="activeLink"
-      class="text-[var(--color-maincolor)] font-medium px-4 py-1.5 rounded-full hover:bg-gray-50 transition-all hover:underline decoration-2 underline-offset-8"
+      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
       >Profile</a
     >
     <a
       routerLink="/notification"
       routerLinkActive="activeLink"
-      class="text-[var(--color-maincolor)] font-medium px-4 py-1.5 rounded-full hover:bg-gray-50 transition-all hover:underline decoration-2 underline-offset-8"
+      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
       >Notification</a
     >
   </div>

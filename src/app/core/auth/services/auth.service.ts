@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class AuthService {
   private readonly httpClient = inject(HttpClient);
 
   signup(data: object): Observable<any> {
-    return this.httpClient.post('https://route-posts.routemisr.com/users/signup', data);
+    return this.httpClient.post(environment.baseUrl + '/users/signup', data);
   }
 
   //   {
@@ -23,7 +24,7 @@ export class AuthService {
   // }
 
   signin(data: object): Observable<any> {
-    return this.httpClient.post('https://route-posts.routemisr.com/users/signin', data);
+    return this.httpClient.post(environment.baseUrl + '/users/signin', data);
   }
 
   //   {

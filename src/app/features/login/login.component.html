@@ -17,7 +17,7 @@
       <form [formGroup]="loginform" (ngSubmit)="logination()" class="grid gap-y-5">
         <div class="relative z-0">
           <input
-            formControlName="email"
+            formControlName="login"
             type="text"
             id="email"
             class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
@@ -26,10 +26,10 @@
           <label
             for="email"
             class="absolute text-md text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-            >Email</label
+            >Email or username</label
           >
         </div>
-        @if (loginform.get('email')?.invalid && loginform.get('email')?.touched) {
+        @if (loginform.get('login')?.invalid && loginform.get('login')?.touched) {
           <div
             class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
             role="alert"
@@ -37,10 +37,10 @@
             <span class="sr-only">Danger</span>
             <div>
               <ul class="list-disc list-outside space-y-1 ps-2.5">
-                @if (loginform.get('email')?.hasError('required')) {
-                  <li>Email is required.</li>
-                } @else if (loginform.get('email')?.hasError('email')) {
-                  <li>Please enter a valid email address.</li>
+                @if (loginform.get('login')?.hasError('required')) {
+                  <li>Email or username is required.</li>
+                } @else if (loginform.get('login')?.hasError('minlength')) {
+                  <li>Please enter a valid email or username .</li>
                 }
               </ul>
             </div>
@@ -49,6 +49,7 @@
 
         <div class="relative z-0">
           <input
+            #pass
             formControlName="password"
             type="password"
             id="password"
@@ -60,6 +61,13 @@
             class="absolute text-md text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >password</label
           >
+
+          <span
+            (click)="showpass(pass)"
+            class="absolute text-white top-1/2 end-4 -translate-y-1/2 cursor-pointer hover:text-maincolor px-1 rounded-full"
+          >
+            <i class="fas" [class]="pass.type === 'text' ? 'fa-eye' : 'fa-eye-slash'"></i>
+          </span>
         </div>
         @if (loginform.get('password')?.invalid && loginform.get('password')?.touched) {
           <div
@@ -99,14 +107,14 @@
         }
         <div>
           <button
-            (click)="directionR('forgetpass')"
+            routerLink="/forgetpass"
             class="w-full cursor-pointer hover:text-heading text-md hover:underline decoration-2 underline-offset-5"
           >
             i have forget my
             <span class="">password</span>
           </button>
           <button
-            (click)="directionR('register')"
+            routerLink="/register"
             class="w-full cursor-pointer mt-1 hover:text-heading text-md px-3 py-2 font-bold hover:underline decoration-2 underline-offset-5"
           >
             create a new account

@@ -1,0 +1,4 @@
+font ---> 'SN Pro', sans-serif;
+
+--color-mainColor:#00298D;
+--color-secondColor:#F0F2F5;

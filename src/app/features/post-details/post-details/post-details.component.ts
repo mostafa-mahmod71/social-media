@@ -1,34 +1,41 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { Ipost } from '../../../../core/models/Iposts/ipost.interface';
-import { PostsService } from '../../../../core/auth/services/posts/posts.service';
-import { CommentsComponent } from '../../../comments/comments/comments.component';
+import { Observable } from 'rxjs';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { PostsService } from '../../../core/auth/services/posts/posts.service';
+import { Ipost } from '../../../core/models/Iposts/ipost.interface';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommentsService } from '../../../../core/auth/services/comments/comments.service';
-import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { CommentsService } from '../../../core/auth/services/comments/comments.service';
+import { CommentsComponent } from '../../../shared/comments/comments/comments.component';
 
 @Component({
-  selector: 'app-singlepost',
+  selector: 'app-post-details',
   imports: [CommentsComponent, ReactiveFormsModule, RouterLink],
-  templateUrl: './singlepost.component.html',
-  styleUrl: './singlepost.component.css',
+  templateUrl: './post-details.component.html',
+  styleUrl: './post-details.component.css',
 })
-export class SinglepostComponent implements OnInit {
+export class PostDetailsComponent implements OnInit {
+  private readonly activatedRoute = inject(ActivatedRoute);
   private readonly postsService = inject(PostsService);
   private readonly commentsService = inject(CommentsService);
-  // private readonly commentsComponent = inject(CommentsComponent);
-  @ViewChild(CommentsComponent) commentcomp!: CommentsComponent;
+  postId: string | null = null;
 
   ngOnInit(): void {
-    this.getAllPosts();
+    this.getIdFromPostUrl();
   }
-  posts: Ipost[] = [];
 
-  getAllPosts(): void {
-    this.postsService.getAllPosts().subscribe({
+  getIdFromPostUrl(): void {
+    this.activatedRoute.paramMap.subscribe((urlpath) => {
+      this.postId = urlpath.get('id');
+      this.getPostDetails();
+    });
+  }
+  postDetails!: Ipost;
+  getPostDetails() {
+    this.postsService.getSinglePost(this.postId).subscribe({
       next: (res) => {
-        if (res.message == 'success') {
-          this.posts = res.data.posts;
+        if (res.success) {
+          this.postDetails = res.data.post;
+          console.log(res);
         }
       },
       error: (err) => {
@@ -57,7 +64,6 @@ export class SinglepostComponent implements OnInit {
       this.commentsService.createComment(formdata, id).subscribe({
         next: (res) => {
           if (res.success) {
-            this.commentcomp?.getAllComments();
             this.crcomment.reset();
           }
         },

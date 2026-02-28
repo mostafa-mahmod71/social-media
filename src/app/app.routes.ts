@@ -11,6 +11,8 @@ import { ChangePasswordComponent } from './features/change-password/change-passw
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { authGuard } from './core/auth/guards/auth-guard';
 import { userGuard } from './core/auth/guards/user-guard';
+import { PostDetailsComponent } from './features/post-details/post-details/post-details.component';
+import { SettingComponent } from './features/setting/setting/setting.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,8 +32,10 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'feed', component: FeedComponent, title: 'home page' },
+      { path: 'post-details/:id', component: PostDetailsComponent, title: 'post details' },
       { path: 'profile', component: ProfileComponent, title: 'profile' },
       { path: 'notification', component: NotificationComponent, title: 'notifications' },
+      { path: 'setting', component: SettingComponent, title: 'setting' },
       { path: 'change', component: ChangePasswordComponent, title: 'change' },
     ],
   },

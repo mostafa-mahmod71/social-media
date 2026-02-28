@@ -10,7 +10,7 @@
           </div>
           <div class="text-headcolor">
             <h2 class="font-bold hover:text-maincolor cursor-pointer">{{ post.user.name }}</h2>
-            <h2 class="text-headcolor/60">{{ post.createdAt }}</h2>
+            <h2 class="text-headcolor/60">{{ getDaysDiff(post.createdAt) }}</h2>
           </div>
         </div>
         <div>
@@ -20,7 +20,7 @@
         </div>
       </div>
     </header>
-    <main>
+    <main [routerLink]="['/post-details', post.id]" class="cursor-pointer">
       @if (post.image) {
         <p class="text-headcolor ms-2 my-3 text-md">
           {{ post.body }}
@@ -89,7 +89,7 @@
             <textarea
               (keydown.enter)="createComment($event, post.id)"
               [formControl]="crcomment"
-              class="resize-none text-sm w-full rounded-base focus:shadow border-secoundcolor focus:ring-0"
+              class="resize-none text-sm text-black/60 w-full rounded-base focus:shadow border-secoundcolor focus:ring-0"
               rows="1"
               placeholder="type your comment ....."
               id=""

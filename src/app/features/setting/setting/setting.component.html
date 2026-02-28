@@ -1,0 +1,131 @@
+<div class="container mx-auto max-w-4xl mt-10 px-4">
+  <h1 class="text-2xl font-bold text-maincolor mb-6 ps-2">Settings</h1>
+
+  <div
+    class="bg-secligter rounded-lg shadow-sm flex flex-col md:flex-row min-h-125 overflow-hidden"
+  >
+    <!-- Sidebar - التنقل الجانبي -->
+    <aside class="w-full md:w-1/4 bg-secoundcolor/10 border-e border-secoundcolor/20 p-4">
+      <nav class="flex flex-col gap-y-2">
+        <button
+          class="flex items-center gap-x-3 p-3 rounded-base cursor-pointer text-headcolor/70 hover:bg-secoundcolor/30 focus:bg-maincolor focus:text-secligter focus:shadow-md"
+        >
+          <i class="fa-solid fa-user-gear"></i> Profile
+        </button>
+        <button
+          class="flex items-center gap-x-3 p-3 rounded-base cursor-pointer text-headcolor/70 hover:bg-secoundcolor/30 focus:bg-maincolor focus:text-secligter focus:shadow-md transition-all"
+        >
+          <i class="fa-solid fa-palette"></i> Theme
+        </button>
+        <button
+          class="flex items-center gap-x-3 p-3 rounded-base cursor-pointer text-headcolor/70 hover:bg-secoundcolor/30 focus:bg-maincolor focus:text-secligter focus:shadow-md transition-all"
+        >
+          <i class="fa-solid fa-lock"></i> Password
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Content - المحتوى المتغير -->
+    <main class="w-full md:w-3/4 p-6 md:p-10">
+      <!-- القسم الأول: تعديل البيانات الشخصية -->
+      <section id="profile" class="hidden space-y-6">
+        <h2 class="text-xl font-bold text-maincolor">Personal Information</h2>
+        <div class="flex items-center gap-x-6 pb-6 border-b border-secoundcolor/20">
+          <div class="size-20 rounded-full overflow-hidden border-4 border-secoundcolor">
+            <!-- ......................... -->
+            <img class="w-full h-full object-cover" src=".........." alt="Profile" />
+          </div>
+          <button
+            class="px-4 py-2 bg-secoundcolor text-maincolor rounded-base text-sm font-bold hover:bg-secoundcolor/70"
+          >
+            Change Photo
+          </button>
+        </div>
+
+        <div class="grid gap-4">
+          <div>
+            <label class="block text-sm text-headcolor/60 mb-1">Full Name</label>
+            <input
+              type="text"
+              class="w-full p-2 rounded-base border-secoundcolor focus:ring-maincolor"
+              value="Maha Fathy"
+            />
+          </div>
+          <button class="w-fit px-6 py-2 bg-maincolor text-secligter rounded-base self-end">
+            Update Profile
+          </button>
+        </div>
+      </section>
+
+      <!-- القسم الثاني: تغيير الثيم (5 ألوان) -->
+      <section id="theme" class="mt-10 pt-10 border-t border-secoundcolor/20">
+        <h2 class="text-xl font-bold text-maincolor mb-4">App Theme</h2>
+        <p class="text-sm text-headcolor/60 mb-4">Choose your favorite color palette</p>
+        <div class="flex items-center flex-wrap gap-x-7 mt-10">
+          <div
+            (click)="changeTheme('default')"
+            class="relative size-10 rounded-full bg-[#002855]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">main</h3>
+          </div>
+          <div
+            (click)="changeTheme('green')"
+            class="relative size-10 rounded-full bg-[#004d33]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">green</h3>
+          </div>
+          <div
+            (click)="changeTheme('purple')"
+            class="relative size-10 rounded-full bg-[#330066]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">purple</h3>
+          </div>
+          <div
+            (click)="changeTheme('red')"
+            class="relative size-10 rounded-full bg-[#b71c1c]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">red</h3>
+          </div>
+          <div
+            (click)="changeTheme('teal')"
+            class="relative size-10 rounded-full bg-[#004d55]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">teal</h3>
+          </div>
+          <div
+            (click)="changeTheme('orange')"
+            class="relative size-10 rounded-full bg-[#c96603]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">orange</h3>
+          </div>
+          <div
+            (click)="changeTheme('dark')"
+            class="relative size-10 rounded-full bg-[#37474f]/90 cursor-pointer hover:scale-110 transition-transform"
+          >
+            <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">dark</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- القسم الثالث: تغيير الباسورد -->
+      <section id="password" class="hidden mt-10 pt-10 border-t border-secoundcolor/20">
+        <h2 class="text-xl font-bold text-maincolor mb-4">Security</h2>
+        <div class="grid gap-4 max-w-sm">
+          <input
+            type="password"
+            placeholder="Current Password"
+            class="p-2 rounded-base border-secoundcolor"
+          />
+          <input
+            type="password"
+            placeholder="New Password"
+            class="p-2 rounded-base border-secoundcolor"
+          />
+          <button class="px-6 py-2 bg-maincolor text-secligter rounded-base">
+            Change Password
+          </button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,128 @@
+<header class="container mx-auto max-w-11/12 bg-secligter rounded-t-lg mt-2">
+  <div
+    routerLink="/feed"
+    class="p-2 font-bold text-lg flex items-center ps-5 cursor-pointer text-maincolor/70 hover:bg-secoundcolor/30 hover:text-maincolor"
+  >
+    <i class="fa-solid fa-chevron-left"></i>
+    <h3>back</h3>
+  </div>
+</header>
+<section
+  #singlePost
+  class="container mx-auto max-w-11/12 bg-secligter p-4 rounded-b-lg md:flex items-center gap-x-2"
+>
+  <section class="md:w-8/12">
+    <header>
+      <div class="flex justify-between">
+        <div class="flex items-center gap-x-3">
+          <div
+            class="size-10 cursor-pointer shadow-md overflow-hidden hover:shadow-maincolor rounded-full"
+          >
+            <img class="w-full" [src]="postDetails.user.photo" [alt]="postDetails.user.name" />
+          </div>
+          <div class="text-headcolor">
+            <h2 class="font-bold hover:text-maincolor cursor-pointer">
+              {{ postDetails.user.name }}
+            </h2>
+            <h2 class="text-headcolor/60">{{ getDaysDiff(postDetails.createdAt) }}</h2>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      @if (postDetails.image) {
+        <p class="text-headcolor ms-2 my-3 text-md">
+          {{ postDetails.body }}
+        </p>
+        <div class="max-w-full overflow-hidden">
+          <img
+            class="w-full object-center rounded-base overflow-hidden"
+            [src]="postDetails.image"
+            [alt]="postDetails.user.name"
+          />
+        </div>
+      } @else {
+        <p class="text-headcolor ms-2 my-7 text-md">
+          {{ postDetails.body }}
+        </p>
+      }
+    </main>
+  </section>
+
+  <footer class="md:w-4/12">
+    <!-- like comment share  -->
+    <div
+      class="flex items-center justify-between rounded-base bg-secoundcolor/15 text-md text-headcolor/50"
+    >
+      <!-- Likes count -->
+      <div
+        class="flex items-center w-4/12 gap-x-1 justify-center p-2 rounded cursor-pointer hover:text-maincolor"
+      >
+        <i class="fa-regular fa-thumbs-up"></i>
+        <span>{{ postDetails.likesCount }}</span>
+      </div>
+
+      <!-- Comments count -->
+      <div
+        #crComment
+        class="flex items-center w-4/12 gap-x-1 justify-center p-2 rounded cursor-pointer hover:text-maincolor"
+      >
+        <i class="fa-regular fa-comment-dots"></i>
+        <span>{{ postDetails.commentsCount }}</span>
+      </div>
+
+      <!-- Shares count -->
+      <div
+        class="flex items-center w-4/12 gap-x-1 justify-center p-2 rounded cursor-pointer hover:text-maincolor"
+      >
+        <i class="fa-solid fa-share-nodes"></i>
+        <span>{{ postDetails.sharesCount }}</span>
+      </div>
+    </div>
+    <!-- show comments  -->
+    <div class="max-h-100 overflow-y-scroll scrollbar-custom">
+      <app-comments [PostId]="postDetails.id"></app-comments>
+    </div>
+
+    <!-- create comment  -->
+    <form (submit)="createComment($event, postDetails.id)">
+      <div class="container mx-auto flex gap-x-2 items-center p-1 rounded-base bg-secoundcolor/15">
+        <div class="w-11/12">
+          <textarea
+            (keydown.enter)="createComment($event, postDetails.id)"
+            [formControl]="crcomment"
+            class="resize-none text-sm w-full rounded-base focus:shadow border-secoundcolor focus:ring-0"
+            rows="1"
+            placeholder="type your comment ....."
+            id=""
+          ></textarea>
+        </div>
+
+        <div class="w-1/12 text-md">
+          <button
+            class="inline-flex justify-center text-maincolor/60 hover:text-maincolor cursor-pointer"
+          >
+            <svg
+              class="w-6 h-6 scale-125 rotate-90 rtl:-rotate-90"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m12 18-7 3 7-18 7 18-7-3Zm0 0v-5"
+              />
+            </svg>
+            <span class="sr-only">Send message</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </footer>
+</section>

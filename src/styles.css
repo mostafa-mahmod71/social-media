@@ -32,6 +32,40 @@ Teal Light	#d4f0f4	متناسق مع Teal Dark
 Dark Light / Soft	#1c1f2a	خلفيات ثانوية، cards، sections، أقل غمقان من اللون الأساسي
 */
 
+/* الثيمات الإضافية */
+[data-theme='green'] {
+  --color-maincolor: #004d33;
+  --color-secoundcolor: #d4e8df;
+}
+
+[data-theme='red'] {
+  --color-maincolor: #660000;
+  --color-secoundcolor: #f4dada;
+}
+
+[data-theme='orange'] {
+  --color-maincolor: #663300;
+  --color-secoundcolor: #f4e3d4;
+}
+
+[data-theme='purple'] {
+  --color-maincolor: #330066;
+  --color-secoundcolor: #e3d4f4;
+}
+
+[data-theme='teal'] {
+  --color-maincolor: #004d55;
+  --color-secoundcolor: #d4f0f4;
+}
+
+/* ثيم الدارك (عكس الألوان) */
+[data-theme='dark'] {
+  --color-maincolor: #cddafd; /* الفاتح بقى هو الماين */
+  --color-secoundcolor: #1c1f2a; /* خلفية ثانوية */
+  --color-secligter: #0b0f1a; /* الخلفية الرئيسية الغامقة */
+  --color-headcolor: white; /* الكلام أبيض */
+}
+
 @font-face {
   font-family: 'sn-font';
   src: url('app/font/SN_Pro/SNPro-VariableFont_wght.ttf');

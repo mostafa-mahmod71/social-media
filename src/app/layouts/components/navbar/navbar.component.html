@@ -1,8 +1,11 @@
+<div #marksec></div>
 <nav
-  class="bg-white/50 backdrop-blur-md border-b border-gray-100 px-6 py-3 flex items-center justify-between shadow-sm sticky top-0 z-50"
+  class="sticky top-0 z-50 bg-gradient-to-r from-secoundcolor to-maincolor/20 border-b/50 px-6 py-2 flex items-center justify-between"
+  [class.shadow-xl]="isscrolled"
+  [class.backdrop-blur-sm]="isscrolled"
 >
-  <div class="flex items-center space-x-3 flex-shrink-0">
-    <div class="w-10 h-10 rounded-full overflow-hidden shadow">
+  <div class="flex items-center space-x-3 shrink-0">
+    <div class="w-12 h-12 rounded-full overflow-hidden shadow">
       <img
         src="/assets social/imgs/route.png"
         alt="Logo"
@@ -12,56 +15,59 @@
     </div>
     <a
       routerLink="/feed"
-      class="text--maincolor font-bold text-xl hover:opacity-80 transition-opacity"
+      class="hidden md:inline-flex text-maincolor font-bold text-xl hover:opacity-80 transition-opacity"
     >
       Social
     </a>
   </div>
 
   <div
-    class="hidden md:flex items-center bg-white border border-gray-200 rounded-full px-2 py-1 shadow-sm space-x-1"
+    class="flex items-center bg-secligter/90 border border-gray-200 rounded-full px-2 py-1 shadow-sm space-x-1"
   >
     <a
       routerLink="/feed"
       routerLinkActive="activeLink"
       [routerLinkActiveOptions]="{ exact: true }"
-      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
+      class="relative pe-2 text-maincolor/70 hover:text-maincolor font-medium mx-1 md:mx-4 px-1 py-1.5 transition-all"
     >
-      Feed</a
-    >
+      <i class="fa-regular fa-house me-1"></i> <span class="hidden md:inline-flex">Feed</span>
+    </a>
     <a
       routerLink="/profile"
       routerLinkActive="activeLink"
-      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
-      >Profile</a
+      class="relative pe-2 text-maincolor/70 hover:text-maincolor font-medium mx-1 md:mx-4 px-1 py-1.5 transition-all"
     >
+      <i class="fa-regular fa-circle-user me-1"></i>
+      <span class="hidden md:inline-flex">Profile</span>
+    </a>
     <a
       routerLink="/notification"
       routerLinkActive="activeLink"
-      class="text-gray-500 hover:text-maincolor font-medium px-4 py-1.5 rounded-full transition-all"
-      >Notification</a
-    >
+      class="relative pe-2 text-maincolor/70 hover:text-maincolor font-medium mx-1 md:mx-4 px-1 py-1.5 transition-all"
+      ><i class="fa-regular fa-bell me-1"></i>
+      <span class="hidden md:inline-flex">Notification</span>
+    </a>
   </div>
 
   <div class="flex relative items-center space-x-4 md:order-2 md:space-x-0 rtl:space-x-reverse">
     <button
       type="button"
-      class="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
+      class="flex text-sm bg-secoundcolor rounded-full md:me-0 hover:ring-4 hover:ring-neutral-tertiary"
       (click)="showdrop = !showdrop"
     >
       <span class="sr-only">Open user menu</span>
       <img
-        class="w-8 h-8 rounded-full cursor-pointer"
+        class="w-10 h-10 rounded-full cursor-pointer"
         src="/assets social/imgs/default-profile.png"
         alt="user photo"
       />
     </button>
     <!-- Dropdown menu -->
     <div
-      class="z-50 absolute top-13 end-2 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+      class="z-50 absolute top-13 end-2 bg-secoundcolor border-3 border-default-medium rounded-base shadow-lg w-44"
       [class.hidden]="!showdrop"
     >
-      <div class="px-4 py-3 text-sm border-b border-default">
+      <div class="px-4 py-3 text-sm border-b border-secligter">
         <span class="block text-heading font-medium"> {{ userinfo.name }}</span>
         <span class="block text-body truncate">{{ userinfo.email }}</span>
       </div>
@@ -69,7 +75,7 @@
         <li>
           <a
             routerLink="/profile"
-            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-secligter hover:text-maincolor rounded"
           >
             <i class="fa-regular fa-circle-user me-1"></i> profile</a
           >
@@ -77,7 +83,7 @@
         <li>
           <a
             routerLink="/change"
-            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-secligter hover:text-maincolor rounded"
             ><i class="fa-solid fa-sliders me-1"></i> Settings</a
           >
         </li>
@@ -85,38 +91,13 @@
         <li>
           <a
             (click)="logoutmodul()"
-            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            class="inline-flex cursor-pointer items-center w-full p-2 hover:bg-secligter hover:text-maincolor rounded"
           >
             <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Log out</a
           >
         </li>
       </ul>
     </div>
-    <button
-      data-collapse-toggle="navbar-user"
-      type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
-      aria-controls="navbar-user"
-      aria-expanded="false"
-    >
-      <span class="sr-only">Open main menu</span>
-      <svg
-        class="w-6 h-6"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-width="2"
-          d="M5 7h14M5 12h14M5 17h14"
-        />
-      </svg>
-    </button>
   </div>
 </nav>
 <!-- logout module -->
@@ -124,20 +105,18 @@
 <div
   [class.hidden]="!showlogoutmodul"
   (click)="logoutmodul()"
-  class="z-55 fixed top-0 opacity-70 min-w-full shadow min-h-full bg-black"
+  class="z-55 fixed top-0 min-w-full shadow min-h-full bg-black/80"
 >
   <div
     (click)="$event.stopPropagation()"
-    class="z-51 fixed top-1/2 -translate-y-1/2 start-1/2 -translate-x-1/2"
+    class="z-51 fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
   >
     <div class="relative p-4 w-full max-w-md max-h-full">
-      <div
-        class="relative bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6"
-      >
+      <div class="relative bg-secligter border border-secligter rounded-base shadow-sm p-4 md:p-6">
         <button
           (click)="logoutmodul()"
           type="button"
-          class="absolute cursor-pointer top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+          class="absolute cursor-pointer top-3 right-2.5 text-maincolor bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
         >
           <svg
             class="w-5 h-5"
@@ -160,7 +139,7 @@
         </button>
         <div class="p-4 md:p-5 text-center">
           <svg
-            class="mx-auto mb-4 text-fg-disabled w-12 h-12"
+            class="mx-auto mb-4 text-maincolor w-12 h-12"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -176,19 +155,19 @@
               d="M12 13V8m0 8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          <h3 class="mb-6 text-body">Are you sure you want to logout from your account?</h3>
+          <h3 class="mb-6 text-maincolor">Are you sure you want to logout from your account?</h3>
           <div class="flex items-center space-x-4 justify-center">
             <button
               (click)="logout()"
               type="button"
-              class="text-white cursor-pointer bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+              class="text-secligter font-bold cursor-pointer bg-maincolor/90 box-border border border-transparent hover:bg-maincolor shadow-sm leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
             >
               Yes, I'm sure
             </button>
             <button
               (click)="logoutmodul()"
               type="button"
-              class="text-body cursor-pointer bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+              class="text-maincolor/90 font-bold cursor-pointer bg-secligter/80 box-border border border-secoundcolor hover:bg-maincolor/10 hover:text-maincolor focus:ring-4 focus:ring-neutral-tertiary shadow-xs leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
             >
               No, cancel
             </button>

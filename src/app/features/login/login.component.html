@@ -1,37 +1,39 @@
-<section class="flex justity-center items-center min-h-screen">
+<section class="md:min-h-screen flex justity-center items-center">
   <div
-    class="container mx-auto max-w-4xl bg-white/70 p-4 rounded-xl shadow border border-sky-300 flex flex-col md:flex-row"
+    class="container max-w-10/12 mx-auto md:max-w-4xl bg-secligter/10 md:bg-secligter/60 p-4 rounded-xl shadow border border-secoundcolor flex flex-col md:flex-row"
   >
     <div class="md:flex md:w-6/12 p-10 flex-col justify-center text-center">
       <div class="space-y-4">
         <h2 class="text-maincolor font-bold tracking-tight text-md uppercase">Welcome Back</h2>
-        <h1 class="text-3xl font-black text-gray-800 leading-tight">Login to Your Account</h1>
+        <h1 class="text-3xl font-black text-maincolor leading-tight">Login to Your Account</h1>
         <div class="w-40 mx-auto h-1 bg-maincolor rounded-full"></div>
-        <p class="text-gray-500 text-sm leading-relaxed italic">
+        <p class="text-maincolor text-sm leading-relaxed italic">
           "confirm your account and continue your journey with us today."
         </p>
       </div>
     </div>
 
-    <div class="w-full md:w-6/12 p-8 md:p-12 bg-white/25 shadow rounded border-sky-100">
+    <div
+      class="w-full md:w-6/12 p-8 md:p-12 bg-secligter/40 md:bg-secligter/50 shadow rounded border-secoundcolor"
+    >
       <form [formGroup]="loginform" (ngSubmit)="logination()" class="grid gap-y-5">
         <div class="relative z-0">
           <input
             formControlName="login"
             type="text"
             id="email"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="email"
-            class="absolute text-md text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-md text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >Email or username</label
           >
         </div>
         @if (loginform.get('login')?.invalid && loginform.get('login')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -53,25 +55,28 @@
             formControlName="password"
             type="password"
             id="password"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="password"
-            class="absolute text-md text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-md text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-90 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >password</label
           >
 
           <span
             (click)="showpass(pass)"
-            class="absolute text-white top-1/2 end-4 -translate-y-1/2 cursor-pointer hover:text-maincolor px-1 rounded-full"
+            class="absolute text-maincolor top-1/2 end-4 -translate-y-1/2 cursor-pointer hover:text-maincolor px-1 rounded-full"
           >
-            <i class="fas" [class]="pass.type === 'text' ? 'fa-eye' : 'fa-eye-slash'"></i>
+            <i
+              class="fas opacity-50"
+              [class]="pass.type === 'text' ? 'fa-eye' : 'fa-eye-slash'"
+            ></i>
           </span>
         </div>
         @if (loginform.get('password')?.invalid && loginform.get('password')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -91,7 +96,7 @@
 
         <button
           [disabled]="loading"
-          class="bg-maincolor text-white py-3 rounded cursor-pointer disabled:bg-maincolor/50"
+          class="bg-maincolor text-secligter py-3 rounded cursor-pointer disabled:bg-maincolor/50"
         >
           login
           @if (loading) {
@@ -108,14 +113,14 @@
         <div>
           <button
             routerLink="/forgetpass"
-            class="w-full cursor-pointer hover:text-heading text-md hover:underline decoration-2 underline-offset-5"
+            class="w-full cursor-pointer text-maincolor/80 hover:text-maincolor text-md hover:underline decoration-2 underline-offset-5"
           >
             i have forget my
             <span class="">password</span>
           </button>
           <button
             routerLink="/register"
-            class="w-full cursor-pointer mt-1 hover:text-heading text-md px-3 py-2 font-bold hover:underline decoration-2 underline-offset-5"
+            class="w-full cursor-pointer mt-1 text-maincolor/80 hover:text-maincolor text-md px-3 py-2 font-bold hover:underline decoration-2 underline-offset-5"
           >
             create a new account
           </button>

@@ -6,7 +6,31 @@
 @theme {
   --color-maincolor: #002855;
   --color-secoundcolor: #cddafd;
+
+  /* for dark mood lighter sections   */
+  --color-secligter: white;
+  --color-headcolor: black;
 }
+
+/* Deep Blue	#002855	الأساسي
+Deep Green	#004d33	أخضر غامق بنفس كثافة الـ Blue
+Deep Red	#660000	أحمر غامق متوازن من حيث الـ luminance
+Deep Orange	#663300	برتقالي غامق بنفس الغمقان
+Purple	#330066	أرجواني غامق جديد
+Teal	#004d55	Teal غامق جديد 
+Dark Heavy	#0b0f1a	خلفية رئيسية للـ dark mode، قريب من الأسود الغامق جداً
+*/
+
+/* الدارك اخر واحد ومحتاج يتعكس يكون الفاتح هو الماين  */
+
+/* Light Blue	#cddafd	الأساسي للـ background
+Light Green	#d4e8df	نفس hue الأخضر لكن فاتح
+Light Red	#f4dada	نفس hue الأحمر لكن فاتح
+Light Orange	#f4e3d4	نفس hue البرتقالي لكن فاتح
+Purple Light	#e3d4f4	متناسق مع Purple Dark
+Teal Light	#d4f0f4	متناسق مع Teal Dark 
+Dark Light / Soft	#1c1f2a	خلفيات ثانوية، cards، sections، أقل غمقان من اللون الأساسي
+*/
 
 @font-face {
   font-family: 'sn-font';
@@ -18,4 +42,23 @@ body {
   font-family: 'sn-font';
   background-color: var(--color-secoundcolor);
   color: var(--color-maincolor);
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Thumb */
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3); /* opacity 40% */
+  border-radius: 9999px;
+}
+
+/* Hover */
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
 }

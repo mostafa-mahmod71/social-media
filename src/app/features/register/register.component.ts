@@ -76,4 +76,11 @@ export class RegisterComponent {
       pass.type = 'password';
     }
   }
+  showrepass(rePass: HTMLInputElement) {
+    if (rePass.type === 'password') {
+      rePass.type = 'text';
+    } else {
+      rePass.type = 'password';
+    }
+  }
 }

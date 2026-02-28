@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Userinfo } from '../../../userinfo.interface';
 @Component({
@@ -7,8 +7,21 @@ import { Userinfo } from '../../../userinfo.interface';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit {
   private readonly router = inject(Router);
+  // classes when scrooling for thenavbar
+  @ViewChild('marksec') marcsec!: ElementRef;
+  isscrolled: boolean = false;
+  ngAfterViewInit(): void {
+    const observer = new IntersectionObserver(
+      ([enter]) => {
+        this.isscrolled = !enter.isIntersecting;
+      },
+      { threshold: 0 },
+    );
+    observer.observe(this.marcsec.nativeElement);
+  }
+
   showdrop: boolean = false;
   showlogoutmodul: boolean = false;
   confirmlogout: boolean = false;

@@ -1,24 +1,30 @@
-<section class="flex justity-center items-center min-h-screen">
+<section class="flex justity-center items-center md:min-h-screen">
   <div
-    class="container mx-auto max-w-4xl bg-white/70 p-4 rounded-xl shadow border border-sky-300 flex flex-col md:flex-row"
+    class="container max-w-10/12 mx-auto md:max-w-4xl bg-secligter/10 md:bg-secligter/25 p-4 rounded-xl shadow border border-secoundcolor flex flex-col md:flex-row"
   >
     <div class="md:flex md:w-6/12 p-10 flex-col justify-center text-center">
       <div class="space-y-4">
-        <h2 class="text-maincolor font-bold tracking-tight text-sm uppercase">
+        <h2 class="text-maincolor text-xs md:text-md font-bold tracking-tight uppercase">
           Welcome TO Our community
         </h2>
-        <h1 class="text-3xl font-black text-gray-800 leading-tight">Create A New Account</h1>
+        <h1 class="text-xl md:text-3xl font-black text-maincolor leading-tight">
+          Create A New Account
+        </h1>
         <div class="w-40 mx-auto h-1 bg-maincolor rounded-full"></div>
-        <p class="text-gray-500 text-sm leading-relaxed italic">
+        <p class="text-maincolor text-sm leading-relaxed italic">
           "Join our community and start your journey with us today."
         </p>
       </div>
     </div>
 
-    <div class="w-full md:w-6/12 p-8 md:p-12 bg-white/25 shadow rounded border-sky-100">
-      <h2 class="text-center text-4xl">Creat a new account</h2>
-      <p class="text-center text-gray-500 mb-2">it is quick and easy.</p>
-      <div class="w-50 mb-4 mx-auto h-1 bg-maincolor/70 rounded"></div>
+    <div
+      class="w-full md:w-6/12 p-8 md:p-12 bg-secligter/40 md:bg-secligter/40 shadow rounded border-secoundcolor"
+    >
+      <header class="hidden md:inline-block">
+        <h2 class="text-center text-4xl">Creat a new account</h2>
+        <p class="text-center text-maincolor mb-2">it is quick and easy.</p>
+        <div class="w-50 mb-4 mx-auto h-1 bg-maincolor/70 rounded"></div>
+      </header>
 
       <form [formGroup]="registerform" (ngSubmit)="registeration()" class="grid gap-y-5">
         <div class="relative z-0">
@@ -26,19 +32,19 @@
             formControlName="name"
             type="text"
             id="fullName"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="fullName"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >fullName</label
           >
         </div>
 
         @if (registerform.get('name')?.invalid && registerform.get('name')?.touched) {
           <div
-            class="flex p-3 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-3 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -59,12 +65,12 @@
             formControlName="username"
             type="text"
             id="userName"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="userName"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >userName</label
           >
         </div>
@@ -74,18 +80,18 @@
             formControlName="email"
             type="text"
             id="email"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="email"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >Email</label
           >
         </div>
         @if (registerform.get('email')?.invalid && registerform.get('email')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -106,7 +112,7 @@
             formControlName="gender"
             type="text"
             id="gender"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-sm text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           >
             <option value="male">Male</option>
@@ -114,13 +120,13 @@
           </select>
           <label
             for="gender"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >select gender</label
           >
         </div>
         @if (registerform.get('gender')?.invalid && registerform.get('gender')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -137,18 +143,18 @@
             formControlName="dateOfBirth"
             type="date"
             id="date"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="date"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >Select Date</label
           >
         </div>
         @if (registerform.get('dateofbirth')?.invalid && registerform.get('dateofbirth')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -166,24 +172,27 @@
             formControlName="password"
             type="password"
             id="password"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="password"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >password</label
           >
           <span
             (click)="showpass(pass)"
             class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer"
           >
-            <i class="fas" [class]="pass.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"></i>
+            <i
+              class="fas opacity-50"
+              [class]="pass.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
           </span>
         </div>
         @if (registerform.get('password')?.invalid && registerform.get('password')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -203,21 +212,31 @@
 
         <div class="relative z-0">
           <input
+            #rePass
             formControlName="rePassword"
             type="password"
             id="rePassword"
-            class="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
             for="rePassword"
-            class="absolute text-sm text-body duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+            class="absolute text-sm text-maincolor duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-maincolor peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
             >confirm password</label
           >
+          <span
+            (click)="showrepass(rePass)"
+            class="absolute top-1/2 -translate-y-1/2 end-4 cursor-pointer"
+          >
+            <i
+              class="fas opacity-50"
+              [class]="rePass.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"
+            ></i>
+          </span>
         </div>
         @if (registerform.get('rePassword')?.invalid && registerform.get('rePassword')?.touched) {
           <div
-            class="flex p-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle"
+            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -252,7 +271,7 @@
         <div class="mx-auto w-full rounded">
           <button
             routerLink="/login"
-            class="w-full cursor-pointer bg-white/25 hover:text-heading rounded-xl text-md px-3 py-2 font-black underline decoration-2 underline-offset-5"
+            class="w-full cursor-pointer bg-white/25 hover:text-maincolor rounded-xl text-md px-3 py-2 font-black underline decoration-2 underline-offset-5"
           >
             i have already an account
           </button>

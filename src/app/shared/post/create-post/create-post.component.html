@@ -1,0 +1,223 @@
+<section class="bg-secligter rounded-lg p-7 mb-10 md:shadow">
+  <h2 class="mb-2 text-black fa-bold"><i class="fa-regular fa-lightbulb"></i> Create a new post</h2>
+  <div class="flex items-center justify-between">
+    <div
+      class="rounded-full m-1 cursor-pointer border border-transparent hover:border-secoundcolor hover:shadow-lg"
+    >
+      <img class="w-10 h-10 rounded-full" [src]="Userinfo.photo" [alt]="Userinfo.name" />
+    </div>
+    <input
+      type="text"
+      class="bg-secoundcolor/20 hover:bg-secoundcolor/30 focus:ring-0 border-2 border-maincolor/10 h-20 hover:border-maincolor/20 rounded-3xl w-full cursor-pointer"
+      placeholder="what's in your mind ..."
+      readonly
+      (click)="shmodul()"
+    />
+  </div>
+</section>
+<!-- modal create a post  -->
+<section
+  (click)="shmodul()"
+  [class.hidden]="!showmainmodal"
+  class="hidden bg-black/30 min-w-full absolute top-0 left-0 min-h-full z-55"
+>
+  <!-- Main modal -->
+  <div
+    (click)="$event.stopPropagation()"
+    class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 w-full md:w-2xl justify-center items-center"
+  >
+    <div class="relative p-4 w-full max-w-2xl h-screen md:max-h-full">
+      <!-- Modal content -->
+      <div
+        class="relative bg-neutral-primary-soft border max-h-[90vh] overflow-y-auto scrollbar-custom border-default rounded-base shadow-sm p-4 md:p-6"
+      >
+        <!-- Modal header -->
+        <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+          <h3 class="text-lg font-medium text-heading fa-bold">Add new post</h3>
+          <button
+            type="button"
+            class="text-body cursor-pointer bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+            (click)="shmodul()"
+          >
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18 17.94 6M18 18 6.06 6"
+              />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="space-y-4 md:space-y-6 py-3 md:py-6">
+          <textarea
+            #descPost
+            [formControl]="postDescr"
+            [readonly]="confirmmodal"
+            rows="4"
+            class="resize-none bg-secoundcolor/15 focus:shadow-xl focus:ring-0 shadow border-secoundcolor/40 text-shadow-headcolor/90 text-sm rounded-base block w-full p-3.5 placeholder:text-body"
+            placeholder="Write your thoughts here..."
+          ></textarea>
+
+          <div class="flex items-center justify-center w-full">
+            <label
+              for="dropzone-file"
+              class="relative flex flex-col items-center justify-center w-full h-64 bg-secoundcolor/15 border border-dashed border-secoundcolor rounded-base cursor-pointer hover:bg-secoundcolor/20 overflow-hidden"
+            >
+              <div class="flex flex-col items-center justify-center text-body pt-4 pb-5">
+                <svg
+                  class="w-8 h-8 mb-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2"
+                  />
+                </svg>
+                <p class="mb-2 text-sm">
+                  <span class="font-semibold">Click to upload</span> or drag and drop
+                </p>
+                <p class="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+              </div>
+              <input
+                #fileinpo
+                (change)="uploadfile($event)"
+                [disabled]="confirmmodal"
+                id="dropzone-file"
+                type="file"
+                class="hidden"
+              />
+
+              <!-------  preview and clear img loaded   -------->
+              @if (imgPreview) {
+                <div
+                  class="w-full absolute flex items-center justify-center hover:scale-110 transition duration-500 rounded-base top-0 overflow-hidden h-full bg-amber-800"
+                >
+                  <img [src]="imgPreview" alt="" class="w-full object-contain" />
+                </div>
+                <button (click)="clearpreview()" class="absolute top-2 right-2">
+                  <i
+                    class="fa-solid fa-circle-xmark text-2xl cursor-pointer hover:text-maincolor/60 transition duration-300 text-white/90"
+                  ></i>
+                </button>
+              }
+            </label>
+          </div>
+        </div>
+        <!-- Modal footer -->
+        <form (submit)="sendPostInfo($event)">
+          <div class="flex items-center border-t border-default space-x-4 pt-3 md:pt-5">
+            <button
+              [disabled]="loading"
+              type="submit"
+              [class.hidden]="confirmmodal"
+              class="text-secligter bg-maincolor/80 cursor-pointer box-border border border-transparent hover:bg-maincolor/90 rounded-base text-md px-6 py-2.5 focus:outline-none"
+            >
+              post <i class="fas animate-spin" [class.fa-spinner]="loading"></i>
+            </button>
+            <button
+              (click)="backCloseModal()"
+              [disabled]="confirmmodal"
+              type="button"
+              class="text-body cursor-pointer bg-neutral-secondary-medium box-border border border-default-medium hover:bg-secligter hover:text-maincolor rounded-base text-md px-6 py-2.5 focus:outline-none"
+            >
+              close
+            </button>
+          </div>
+          @if (crPostMsg) {
+            <div class="bg-secoundcolor text-center font-bold p-3 rounded-base my-3">
+              <p class="">{{ crPostMsg }}</p>
+            </div>
+          }
+        </form>
+
+        <!-- sure to discard change ?? -->
+
+        <!-- discard change modal -->
+        <div
+          [class.hidden]="!confirmmodal"
+          class="hidden fixed top-1/2 -translate-y-1/2 z-50 w-9/10 max-h-full"
+        >
+          <div class="relative p-4 w-full max-h-full">
+            <!-- Modal content -->
+            <div
+              class="abs bg-neutral-primary-soft border border-default rounded-base shadow-sm p-4 md:p-6"
+            >
+              <!-- Modal header -->
+              <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                <h3 class="text-lg font-medium text-heading">Terms of Service</h3>
+                <button
+                  type="button"
+                  class="text-body bg-transparent cursor-pointer hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
+                  (click)="backCloseModal()"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18 17.94 6M18 18 6.06 6"
+                    />
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+                </button>
+              </div>
+              <!-- Modal body -->
+              <div class="space-y-4 md:space-y-6 py-4 md:py-6">
+                <p class="leading-relaxed text-body">
+                  if you close when you creating a new post all change will be descared are you sure
+                  you want to close it ?
+                </p>
+              </div>
+              <!-- Modal footer -->
+              <div class="flex items-center border-t border-default space-x-4 pt-4 md:pt-5">
+                <button
+                  (click)="discardeChange()"
+                  type="button"
+                  class="text-white cursor-pointer bg-maincolor/70 box-border border border-transparent hover:bg-maincolor/90 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                >
+                  discard change && close
+                </button>
+                <button
+                  (click)="backCloseModal()"
+                  type="button"
+                  class="text-body cursor-pointer bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+                >
+                  continue
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

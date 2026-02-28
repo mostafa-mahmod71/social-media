@@ -1,8 +1,24 @@
 .activeLink {
   font-weight: 600;
-  text-decoration-color: var(--color-maincolor);
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 8px;
   color: var(--color-maincolor);
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  height: 3px;
+  border-radius: 40%;
+  background-color: var(--color-maincolor);
+  opacity: 40%;
+  width: 0;
+
+  animation: borderActive 1s forwards;
+}
+@keyframes borderActive {
+  to {
+    left: 0;
+    width: 100%;
+  }
 }

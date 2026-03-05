@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ThemesettingService } from './core/auth/services/themesetting/themesetting.service';
+import { LoadingService } from './core/auth/services/loading/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { ThemesettingService } from './core/auth/services/themesetting/themesett
 export class App implements OnInit {
   protected readonly title = signal('social-app');
   private readonly themesettingService = inject(ThemesettingService);
+  readonly loadingservice = inject(LoadingService);
 
   ngOnInit(): void {
     this.themesettingService.loadSaveTheme();

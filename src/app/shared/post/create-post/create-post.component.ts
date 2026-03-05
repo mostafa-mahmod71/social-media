@@ -1,7 +1,14 @@
-import { SinglepostComponent } from './../siglepost/singlepost/singlepost.component';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Userinfo } from '../../../userinfo.interface';
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { PostsService } from '../../../core/auth/services/posts/posts.service';
 @Component({
   selector: 'app-create-post',
@@ -12,7 +19,7 @@ import { PostsService } from '../../../core/auth/services/posts/posts.service';
 export class CreatePostComponent {
   private readonly postsService = inject(PostsService);
   @ViewChild('fileinpo') fileinpo!: ElementRef<HTMLInputElement>;
-  // @ViewChild(SinglepostComponent) showposts!: SinglepostComponent;
+  @Output() refreshPosts = new EventEmitter<void>();
 
   showmainmodal: boolean = false;
   Userinfo: Userinfo = JSON.parse(localStorage.getItem('socialUser') || '{}');
@@ -78,11 +85,14 @@ export class CreatePostComponent {
     if (this.postDescr.value) {
       this.postsService.createPost(formdata).subscribe({
         next: (res) => {
+          console.log(res);
           this.crPostMsg = res.message;
+          this.refreshPosts.emit();
+          this.shmodul();
           this.postDescr.reset();
           this.clearpreview();
-          this.shmodul();
           this.loading = false;
+
           // this.showposts.getAllPosts();
         },
         error: (err) => {

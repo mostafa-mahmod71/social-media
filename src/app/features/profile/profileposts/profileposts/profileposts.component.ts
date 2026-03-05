@@ -1,35 +1,27 @@
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  inject,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { Ipost } from '../../../../core/models/Iposts/ipost.interface';
+import { Userinfo } from './../../../../userinfo.interface';
+import { Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
 import { PostsService } from '../../../../core/auth/services/posts/posts.service';
-import { CommentsComponent } from '../../../comments/comments/comments.component';
+import { Ipost } from '../../../../core/models/Iposts/ipost.interface';
+import { LoadingpostsComponent } from '../../../../shared/post/siglepost/loadingposts/loadingposts/loadingposts.component';
 import { RouterLink } from '@angular/router';
-import { LoadingpostsComponent } from '../loadingposts/loadingposts/loadingposts.component';
-import { Userinfo } from '../../../../userinfo.interface';
+import { CommentsComponent } from '../../../../shared/comments/comments/comments.component';
 
 @Component({
-  selector: 'app-singlepost',
-  imports: [CommentsComponent, RouterLink, LoadingpostsComponent],
-  templateUrl: './singlepost.component.html',
-  styleUrl: './singlepost.component.css',
+  selector: 'app-profileposts',
+  imports: [LoadingpostsComponent, RouterLink, CommentsComponent],
+  templateUrl: './profileposts.component.html',
+  styleUrl: './profileposts.component.css',
 })
-export class SinglepostComponent implements OnInit {
+export class ProfilepostsComponent implements OnInit {
   private readonly postsService = inject(PostsService);
   @ViewChild(CommentsComponent) commentscomp!: CommentsComponent;
-  loadingposts: boolean = true;
 
+  userInfo: Userinfo = JSON.parse(localStorage.getItem('socialUser') || '{}');
+  loadingposts: boolean = true;
+  posts: Ipost[] = [];
   ngOnInit(): void {
     this.getAllPosts();
   }
-  posts: Ipost[] = [];
-  userId: Userinfo = JSON.parse(localStorage.getItem('socialUser') || '{}');
 
   getAllPosts(): void {
     this.loadingposts = true;
@@ -84,23 +76,6 @@ export class SinglepostComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.getAllPosts();
-        }
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
-  //// like && unlike
-
-  // liked: string =
-
-  likeUnpost(postId: string): void {
-    this.postsService.likeUnPosts(postId).subscribe({
-      next: (res) => {
-        if (res.success) {
-          console.log(res);
         }
       },
       error: (err) => {

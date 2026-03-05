@@ -1,50 +1,85 @@
 <!-- for loading without the defer loading  -->
-@if (loading) {
-  <h1 class="text-headcolor/70 hover:text-headcolor">
-    loading <i class="fas fa-spinner animate-spin"></i>
-  </h1>
+@if (loadingcomment) {
+  <app-loadcomments></app-loadcomments>
 } @else {
-  @for (comment of commentInfo; track comment._id) {
-    <div
-      (click)="getAllComments()"
-      class="container mx-auto p-3 my-2 rounded-base bg-secoundcolor/15"
-    >
-      <header class="flex justify-between">
-        <div class="flex items-center gap-x-2">
-          <div class="size-8 rounded-full overflow-hidden">
-            <img
-              class="w-full object-cover"
-              [src]="comment.commentCreator.photo"
-              [alt]="comment.commentCreator.name"
-            />
+  <div class="max-h-80 overflow-y-scroll scrollbar-custom">
+    @for (comment of commentInfo; track comment._id) {
+      <div class="container mx-auto p-3 my-2 rounded-base bg-secoundcolor/15">
+        <header class="flex justify-between">
+          <div class="flex items-center gap-x-2">
+            <div class="size-8 rounded-full overflow-hidden">
+              <img
+                class="w-full object-cover"
+                [src]="comment.commentCreator.photo"
+                [alt]="comment.commentCreator.name"
+              />
+            </div>
+            <div>
+              <h2 class="text-headcolor/70 text-sm">{{ comment.commentCreator.name }}</h2>
+              <p class="opacity-50 text-sm">{{ getDaysDiff(comment.createdAt) }}</p>
+            </div>
           </div>
           <div>
-            <h2 class="text-headcolor/70 text-sm">{{ comment.commentCreator.name }}</h2>
-            <p class="opacity-50 text-sm">{{ comment.createdAt }}</p>
-          </div>
-        </div>
-        <div>
-          <i
-            class="font-bold text-headcolor/70 hover:text-headcolor cursor-pointer rounded fa-solid fa-ellipsis"
-          ></i>
-        </div>
-      </header>
-      <main class="m-2 p-2">
-        <p class="text-sm">{{ comment.content }}</p>
-        <div class="flex items-center gap-x-4 mt-2 text-xs text-maincolor/50">
-          <!-- Likes count -->
-          <div class="flex items-center gap-x-1 cursor-pointer">
-            <i class="fa-regular fa-thumbs-up"></i>
-            <span>{{ comment.likes.length }}</span>
-          </div>
+            <i
+              (click)="showdropdown($event, comment._id)"
+              class="font-bold text-headcolor/70 hover:text-headcolor cursor-pointer rounded fa-solid fa-ellipsis"
+            ></i>
 
-          <!-- Replies count -->
-          <div class="flex items-center gap-x-1 cursor-pointer">
-            <i class="fa-regular fa-comment"></i>
-            <span>{{ comment.repliesCount }}</span>
+            <!-- Dropdown edit post menu -->
+
+            <div
+              [class.hidden]="isDropdownOpen !== comment._id"
+              class="absolute hidden z-60 bg-secligter/90 border border-secligter rounded-base shadow-lg"
+            >
+              <ul class="p-2 w-40 text-sm text-headcolor/70 font-medium">
+                <!-- save post  -->
+                <li>
+                  <a
+                    class="inline-flex items-center w-full p-2 hover:bg-secoundcolor/30 hover:font-bold hover:text-headcolor cursor-pointer rounded"
+                    >save comment</a
+                  >
+                </li>
+                @if (comment.commentCreator._id === userinfo._id) {
+                  <!-- edit post  -->
+                  <li>
+                    <a
+                      class="inline-flex items-center w-full p-2 hover:bg-secoundcolor/30 hover:font-bold hover:text-headcolor cursor-pointer rounded"
+                      >edit comment</a
+                    >
+                  </li>
+                  <!-- delet post  -->
+                  <li>
+                    <a
+                      (click)="deletComment(PostId, comment._id)"
+                      class="inline-flex items-center w-full text-danger p-2 hover:bg-secoundcolor/30 hover:font-bold cursor-pointer rounded"
+                      >delet comment</a
+                    >
+                  </li>
+                }
+              </ul>
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
-  }
+        </header>
+        <main class="m-2 p-2">
+          <p class="text-sm">{{ comment.content }}</p>
+          <div class="flex items-center gap-x-4 mt-2 text-xs text-maincolor/50">
+            <!-- Likes count -->
+            <div class="flex items-center gap-x-1 cursor-pointer">
+              <i class="fa-regular fa-thumbs-up"></i>
+              <span>{{ comment.likes.length }}</span>
+            </div>
+
+            <!-- Replies count -->
+            <div class="flex items-center gap-x-1 cursor-pointer">
+              <i class="fa-regular fa-comment"></i>
+              <span>{{ comment.repliesCount }}</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    }
+  </div>
+
+  <!-- create comment  -->
+  <app-createcomment (commentAdded)="getAllComments()" [PostId]="PostId"></app-createcomment>
 }

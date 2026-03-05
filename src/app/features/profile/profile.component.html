@@ -1,1 +1,83 @@
-<p>profile works!</p>
+<section
+  class="max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-sm overflow-hidden mt-6 border border-gray-100 dark:border-gray-800"
+>
+  <!-- Cover Image Section -->
+  <div class="relative h-48 md:h-64 bg-gray-200">
+    <img
+      [src]="Userinfo.cover || 'https://via.placeholder.com'"
+      alt="Cover Image"
+      class="w-full h-full object-cover"
+    />
+
+    <!-- زرار تغيير الكوفر (أيقونة بس عشان البساطة) -->
+    <button
+      class="absolute bottom-4 right-4 bg-white/90 hover:bg-white p-2.5 rounded-full shadow-lg transition-all border border-gray-200"
+    >
+      <i class="fa-solid fa-camera text-gray-700"></i>
+    </button>
+  </div>
+
+  <!-- Profile Header Info -->
+  <div class="relative px-6 pb-8">
+    <div class="flex flex-col md:flex-row items-center md:items-end -mt-16 md:-mt-20 md:space-x-6">
+      <!-- Profile Image -->
+      <div class="relative group">
+        <img
+          [src]="Userinfo.photo || 'https://via.placeholder.com'"
+          alt="Profile Image"
+          class="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-gray-900 shadow-xl object-cover bg-gray-100"
+        />
+        <div
+          class="absolute inset-0 bg-black/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 cursor-pointer transition-all duration-300"
+        >
+          <i class="fa-solid fa-camera text-white text-2xl"></i>
+        </div>
+      </div>
+
+      <!-- Name & Email -->
+      <div class="mt-4 md:mt-0 text-center md:text-left flex-1 pb-2">
+        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+          {{ Userinfo.name }}
+        </h1>
+        <p class="text-gray-500 dark:text-gray-400 font-medium text-lg">
+          {{ Userinfo.email }}
+        </p>
+      </div>
+
+      <!-- Simple Action (Optional) -->
+      <div class="hidden md:flex pb-4">
+        <button class="text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline Section -->
+<div class="max-w-2xl mx-auto mt-8 px-4">
+  <div class="flex items-center space-x-2 mb-6 border-b border-gray-200 dark:border-gray-800 pb-2">
+    <span
+      class="font-bold text-gray-800 dark:text-gray-100 border-b-2 px-4 py-2"
+      style="border-color: var(--main-color); color: var(--main-color)"
+    >
+      Your Timeline
+    </span>
+  </div>
+  <app-create-post></app-create-post>
+  <app-profileposts></app-profileposts>
+  <!-- Empty State لو مفيش بوستات -->
+  <!-- <div
+    class="text-center py-16 bg-white dark:bg-gray-900 rounded-xl border border-dashed border-gray-300 dark:border-gray-700"
+  >
+    <div
+      class="bg-gray-50 dark:bg-gray-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+    >
+      <i class="fa-solid fa-images text-2xl text-gray-400"></i>
+    </div>
+    <h3 class="text-gray-900 dark:text-white font-semibold">No posts yet</h3>
+    <p class="text-gray-500 text-sm mt-1">
+      When you share photos, they will appear on your profile.
+    </p>
+  </div> -->
+</div>

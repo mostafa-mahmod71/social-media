@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from '../../../../../environments/environment';
-import { PostsService } from '../posts/posts.service';
 import { isPlatformBrowser } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CommentsService {
+export class FowllowsuggestsService {
   private readonly httpClient = inject(HttpClient);
   private readonly platformId = inject(PLATFORM_ID);
 
@@ -26,20 +25,9 @@ export class CommentsService {
       };
     }
   }
-  getAllComments(postId: any): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}/posts/${postId}/comments`, this.headerToken);
-  }
-  createComment(data: any, postId: any): Observable<any> {
-    return this.httpClient.post(
-      `${environment.baseUrl}/posts/${postId}/comments`,
-      data,
-      this.headerToken,
-    );
-  }
-
-  deletComment(postId: string, commentId: string): Observable<any> {
-    return this.httpClient.delete(
-      `${environment.baseUrl}/posts/${postId}/comments/${commentId}`,
+  followSugg(): Observable<any> {
+    return this.httpClient.get(
+      `${environment.baseUrl}/users/suggestions?limit=3`,
       this.headerToken,
     );
   }

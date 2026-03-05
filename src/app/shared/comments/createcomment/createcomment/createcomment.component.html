@@ -1,0 +1,48 @@
+<!-- create comment  -->
+<form (submit)="createComment($event, PostId)">
+  <div
+    class="container mx-auto flex border border-headcolor/5 py-2 mt-2 gap-x-2 items-center p-1 rounded-base bg-secoundcolor/15"
+  >
+    <div class="w-11/12">
+      <textarea
+        [class.hidden]="submitloading"
+        (keydown.enter)="createComment($event, PostId)"
+        [formControl]="crcomment"
+        class="resize-none text-sm text-black/60 w-full rounded-base focus:shadow border-secoundcolor focus:ring-0"
+        rows="1"
+        placeholder="type your comment ....."
+        id=""
+      ></textarea>
+    </div>
+
+    <div class="w-1/12 text-md">
+      <button
+        [disabled]="submitloading"
+        class="inline-flex justify-center text-maincolor/60 hover:text-maincolor cursor-pointer"
+      >
+        @if (submitloading) {
+          <i [class.hidden]="submitloading" class="fas fa-spinner animate-spin"></i>
+        } @else {
+          <svg
+            class="w-6 h-6 scale-125 rotate-90 rtl:-rotate-90"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m12 18-7 3 7-18 7 18-7-3Zm0 0v-5"
+            />
+          </svg>
+        }
+        <span class="sr-only">Send message</span>
+      </button>
+    </div>
+  </div>
+</form>

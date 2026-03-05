@@ -28,10 +28,17 @@ export class PostsService {
   getAllPosts(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/posts`, this.headerToken);
   }
-  createPost(data: any): Observable<any> {
+  createPost(data: object): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/posts`, data, this.headerToken);
   }
-  getSinglePost(postId: any): Observable<any> {
+  getSinglePost(postId: string): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/posts/${postId}`, this.headerToken);
+  }
+  deletpost(postId: string): Observable<any> {
+    return this.httpClient.delete(environment.baseUrl + `/posts/${postId}`, this.headerToken);
+  }
+
+  likeUnPosts(postId: string): Observable<any> {
+    return this.httpClient.put(`${environment.baseUrl}/posts/${postId}/like`, {}, this.headerToken);
   }
 }

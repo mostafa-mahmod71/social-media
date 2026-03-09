@@ -1,1 +1,74 @@
-<p>notification works!</p>
+<section
+  class="max-w-2xl mx-auto mt-10 p-6 bg-secligter rounded-lg shadow-md border border-secoundcolor/20"
+>
+  <!-- Header Section -->
+  <div class="flex items-center justify-between mb-8 border-b border-secoundcolor/10 pb-4">
+    <h1 class="text-2xl font-bold text-headcolor flex items-center gap-3">
+      <i class="fa-solid fa-bell text-maincolor"></i> Notifications
+    </h1>
+    <span class="bg-maincolor text-secligter text-xs font-bold px-2.5 py-1 rounded-full">
+      {{ notifications.length }} New
+    </span>
+  </div>
+
+  <!-- Notifications List -->
+  <div class="grid gap-y-4">
+    @for (item of notifications; track item._id) {
+      <div
+        (click)="markRead(item._id)"
+        [class.bg-secoundcolor/10]="!item.isRead"
+        class="flex items-center justify-between p-4 rounded-base border border-transparent hover:border-maincolor/20 hover:bg-secoundcolor/5 transition-all cursor-pointer group"
+      >
+        <div class="flex items-center gap-x-4">
+          <!-- User Image -->
+          <div class="relative size-12 flex-shrink-0">
+            <img
+              [src]="item.actor.photo"
+              [alt]="item.actor.name"
+              class="w-full h-full rounded-full object-cover border-2 border-secoundcolor/30 shadow-sm"
+            />
+            <!-- Status Dot (Unread) -->
+            @if (!item.isRead) {
+              <span
+                class="absolute top-0 right-0 size-3 bg-maincolor rounded-full border-2 border-secligter"
+              ></span>
+            }
+          </div>
+
+          <!-- Content Info -->
+          <div class="flex flex-col">
+            <h3
+              class="text-headcolor font-bold text-md group-hover:text-maincolor transition-colors"
+            >
+              {{ item.actor.name }}
+            </h3>
+            <p class="text-headcolor/70 text-sm italic">
+              {{ item.entity.body }}
+            </p>
+            <span class="text-headcolor/40 text-xs mt-1">
+              <i class="fa-regular fa-clock mr-1"></i> {{ item.createdAt }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Read/Unread Status Label -->
+        <div class="flex flex-col items-end gap-1">
+          @if (!item.isRead) {
+            <span class="text-[10px] font-bold text-maincolor uppercase tracking-widest">New</span>
+          } @else {
+            <i class="fa-solid fa-check-double text-maincolor/40 text-sm" title="Read"></i>
+          }
+        </div>
+      </div>
+    } @empty {
+      <!-- Empty State -->
+      <div
+        class="text-center py-20 bg-secoundcolor/5 rounded-lg border-2 border-dashed border-secoundcolor/20"
+      >
+        <i class="fa-solid fa-bell-slash text-4xl text-headcolor/20 mb-4 block"></i>
+        <h3 class="text-headcolor font-semibold">No notifications for now</h3>
+        <p class="text-headcolor/40 text-sm">We'll notify you when something happens!</p>
+      </div>
+    }
+  </div>
+</section>

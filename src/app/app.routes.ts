@@ -7,12 +7,13 @@ import { ForgetPasswordComponent } from './features/forget-password/forget-passw
 import { FeedComponent } from './features/feed/feed.component';
 import { ProfileComponent } from './features/profile/profile.component';
 import { NotificationComponent } from './features/notification/notification.component';
-import { ChangePasswordComponent } from './features/change-password/change-password.component';
 import { NotfoundComponent } from './features/notfound/notfound.component';
 import { authGuard } from './core/auth/guards/auth-guard';
 import { userGuard } from './core/auth/guards/user-guard';
 import { PostDetailsComponent } from './features/post-details/post-details/post-details.component';
 import { SettingComponent } from './features/setting/setting/setting.component';
+import { ThemeComponent } from './features/setting/theme/theme/theme.component';
+import { ChangpassComponent } from './features/setting/changpass/changpass/changpass.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -35,8 +36,16 @@ export const routes: Routes = [
       { path: 'post-details/:id', component: PostDetailsComponent, title: 'post details' },
       { path: 'profile', component: ProfileComponent, title: 'profile' },
       { path: 'notification', component: NotificationComponent, title: 'notifications' },
-      { path: 'setting', component: SettingComponent, title: 'setting' },
-      { path: 'change', component: ChangePasswordComponent, title: 'change' },
+      {
+        path: 'setting',
+        component: SettingComponent,
+        title: 'setting',
+        children: [
+          { path: '', redirectTo: 'theme', pathMatch: 'full' },
+          { path: 'theme', component: ThemeComponent, title: 'theme' },
+          { path: 'change', component: ChangpassComponent, title: 'change password' },
+        ],
+      },
     ],
   },
   { path: '**', component: NotfoundComponent },

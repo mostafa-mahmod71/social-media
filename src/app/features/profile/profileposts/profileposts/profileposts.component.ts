@@ -29,6 +29,7 @@ export class ProfilepostsComponent implements OnInit {
       next: (res) => {
         if (res.message == 'success') {
           this.posts = res.data.posts;
+          this.posts = this.posts.filter((post) => post.user._id === this.userInfo._id);
           this.loadingposts = false;
         }
       },

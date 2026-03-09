@@ -1,0 +1,38 @@
+<aside
+  class="w-full bg-secligter/35 rounded-2xl shadow-sm border border-secoundcolor p-4 sticky top-17"
+>
+  <ul class="space-y-2 font-medium">
+    <!-- Feed Tab -->
+    <li>
+      <button
+        (click)="feed()"
+        class="flex items-center w-full p-3 text-headcolor/70 hover:text-secligter hover:bg-maincolor/90 rounded-xl group transition-all duration-200 cursor-pointer"
+      >
+        <i class="fa-solid fa-house text-lg w-6 transition-colors hover:text-maincolor"></i>
+        <span class="ms-3">Feed</span>
+      </button>
+    </li>
+
+    <!-- My Profile Tab -->
+    <li>
+      <button
+        (click)="profile()"
+        class="flex items-center w-full p-3 text-headcolor/70 hover:text-secligter hover:bg-maincolor/90 rounded-xl group transition-all duration-200 cursor-pointer"
+      >
+        <i class="fa-solid fa-user text-lg w-6 transition-colors hover:text-maincolor"></i>
+        <span class="ms-3">My Profile</span>
+      </button>
+    </li>
+
+    <!-- Settings Tab -->
+    <li>
+      <button
+        (click)="setting()"
+        class="flex items-center w-full p-3 text-headcolor/70 hover:text-secligter hover:bg-maincolor/90 rounded-xl group transition-all duration-200 cursor-pointer"
+      >
+        <i class="fa-solid fa-gear text-lg w-6 transition-colors hover:text-maincolor"></i>
+        <span class="ms-3">Settings</span>
+      </button>
+    </li>
+  </ul>
+</aside>

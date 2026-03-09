@@ -1,0 +1,48 @@
+<section id="theme" class="mt-10 pt-10 border-t border-secoundcolor/20">
+  <h2 class="text-xl font-bold text-maincolor">App Theme</h2>
+  <p class="text-sm text-headcolor/70 mb-6">Choose your favorite color palette</p>
+  <div class="flex items-center text-headcolor flex-wrap gap-x-7 gap-y-6 mt-10">
+    <div
+      (click)="changeTheme('default')"
+      class="relative size-10 rounded-full bg-[#002855]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">main</h3>
+    </div>
+    <div
+      (click)="changeTheme('green')"
+      class="relative size-10 rounded-full bg-[#004d33]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">green</h3>
+    </div>
+    <div
+      (click)="changeTheme('purple')"
+      class="relative size-10 rounded-full bg-[#330066]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">purple</h3>
+    </div>
+    <div
+      (click)="changeTheme('red')"
+      class="relative size-10 rounded-full bg-[#b71c1c]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">red</h3>
+    </div>
+    <div
+      (click)="changeTheme('teal')"
+      class="relative size-10 rounded-full bg-[#004d55]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">teal</h3>
+    </div>
+    <div
+      (click)="changeTheme('orange')"
+      class="relative size-10 rounded-full bg-[#c96603]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">orange</h3>
+    </div>
+    <div
+      (click)="changeTheme('dark')"
+      class="relative size-10 rounded-full bg-[#37474f]/90 cursor-pointer hover:scale-110 transition-transform"
+    >
+      <h3 class="absolute -top-6 left-1/2 -translate-x-1/2 font-medium">dark</h3>
+    </div>
+  </div>
+</section>

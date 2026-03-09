@@ -1,8 +1,8 @@
 @if (loadingposts) {
   <app-loadingposts></app-loadingposts>
 } @else {
-  @for (post of posts; track post.id) {
-    @if (post.user._id === userInfo._id) {
+  @if (posts.length > 0) {
+    @for (post of posts; track post.id) {
       <section #singlePost class="bg-secligter p-4 rounded-lg mt-4 grid gap-y-2">
         <header>
           <div class="flex justify-between">
@@ -13,7 +13,9 @@
                 <img class="w-full" [src]="post.user.photo" [alt]="post.user.name" />
               </div>
               <div class="text-headcolor">
-                <h2 class="font-bold hover:text-maincolor cursor-pointer">{{ post.user.name }}</h2>
+                <h2 class="font-bold hover:text-maincolor cursor-pointer">
+                  {{ post.user.name }}
+                </h2>
                 <div class="flex items-center gap-x-5">
                   <h2 class="text-headcolor/60">@{{ post.user.username }}</h2>
                   <h2 class="text-headcolor/60 text-sm">{{ getDaysDiff(post.createdAt) }}</h2>
@@ -149,5 +151,17 @@
         </footer>
       </section>
     }
+  } @else {
+    <div class="text-center py-16 bg-secoundcolor rounded-xl border border-secligter">
+      <div
+        class="bg-secligter w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+      >
+        <i class="fa-solid fa-images text-2xl text-maincolor/50"></i>
+      </div>
+      <h3 class="text-headcolor/90 font-semibold">No posts yet</h3>
+      <p class="text-headcolor/30 text-sm mt-1">
+        When you share photos, they will appear on your profile.
+      </p>
+    </div>
   }
 }

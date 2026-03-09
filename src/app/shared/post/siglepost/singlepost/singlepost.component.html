@@ -18,7 +18,7 @@
                 <h2 class="text-headcolor/60 text-sm">{{ getDaysDiff(post.createdAt) }}</h2>
                 @if (post.user._id === userId._id) {
                   <select
-                    class="py-0 cursor-pointer w-22 rounded-base text-headcolor/60 hover:shadow hover:bg-secoundcolor/20 focus:text-maincolor/80 px-2 border-none ring-0"
+                    class="py-0 cursor-pointer w-22 rounded-base bg-secoundcolor text-headcolor/60 hover:shadow hover:bg-secoundcolor/20 focus:text-maincolor/80 px-2 border-none ring-0"
                   >
                     <option [selected]="post.privacy === 'private'" value="private">private</option>
                     <option [selected]="post.privacy === 'public'" value="public">public</option>
@@ -54,6 +54,7 @@
                   <!-- edit post  -->
                   <li>
                     <a
+                      (click)="updatePost(post._id, post.body, post.image)"
                       class="inline-flex items-center w-full p-2 hover:bg-secoundcolor/30 hover:font-bold hover:text-headcolor cursor-pointer rounded"
                       >edit post</a
                     >

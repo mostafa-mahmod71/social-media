@@ -38,6 +38,9 @@ export class PostsService {
     return this.httpClient.delete(environment.baseUrl + `/posts/${postId}`, this.headerToken);
   }
 
+  updatepost(data: FormData, postId: string): Observable<any> {
+    return this.httpClient.put(`${environment.baseUrl}/posts/${postId}`, data, this.headerToken);
+  }
   likeUnPosts(postId: string): Observable<any> {
     return this.httpClient.put(`${environment.baseUrl}/posts/${postId}/like`, {}, this.headerToken);
   }

@@ -65,8 +65,6 @@ export class RegisterComponent {
           this.loading = false;
         },
       });
-    } else {
-      this.registerform.markAllAsTouched();
     }
   }
   showpass(pass: HTMLInputElement): void {

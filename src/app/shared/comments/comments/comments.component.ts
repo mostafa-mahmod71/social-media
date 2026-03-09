@@ -65,4 +65,22 @@ export class CommentsComponent implements OnInit {
       },
     });
   }
+
+  updatcomm(postId: string, commId: string, commbody: string) {
+    const newbody = prompt('edit comment', commbody);
+    const formdata = new FormData();
+    if (newbody) {
+      formdata.append('content', newbody);
+    }
+    this.commentsService.updatecomment(postId, commId, formdata).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.getAllComments();
+        this.isDropdownOpen = null;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

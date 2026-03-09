@@ -36,7 +36,6 @@ export class LoginComponent {
       this.loginapi.unsubscribe();
       this.loginapi = this.authService.signin(this.loginform.value).subscribe({
         next: (res) => {
-          console.log(res);
           this.loading = false;
           this.msgErr = '';
           localStorage.setItem('socialToken', res.data.token);
@@ -44,13 +43,10 @@ export class LoginComponent {
           this.router.navigate(['/feed']);
         },
         error: (err) => {
-          console.log(err);
           this.msgErr = err.error.message;
           this.loading = false;
         },
       });
-    } else {
-      this.loginform.markAllAsTouched();
     }
   }
 

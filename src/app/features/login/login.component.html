@@ -22,7 +22,7 @@
             formControlName="login"
             type="text"
             id="email"
-            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
+            class="block py-2.5 px-0 w-full text-md text-headcolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
             placeholder=" "
           />
           <label
@@ -33,7 +33,7 @@
         </div>
         @if (loginform.get('login')?.invalid && loginform.get('login')?.touched) {
           <div
-            class="flex p-4 text-sm text-maincolor rounded-base bg-secoundcolor border border-secligter"
+            class="flex p-4 text-sm text-headcolor rounded-base bg-secoundcolor border border-secligter"
             role="alert"
           >
             <span class="sr-only">Danger</span>
@@ -55,7 +55,7 @@
             formControlName="password"
             type="password"
             id="password"
-            class="block py-2.5 px-0 w-full text-lg font-bold text-maincolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-maincolor peer"
+            class="block py-2.5 px-0 w-full text-md text-headcolor bg-transparent border-0 border-b-2 border-secoundcolor appearance-none focus:outline-none focus:ring-0 focus:border-headtext-headcolor peer"
             placeholder=" "
           />
           <label
@@ -66,12 +66,9 @@
 
           <span
             (click)="showpass(pass)"
-            class="absolute text-maincolor top-1/2 end-4 -translate-y-1/2 cursor-pointer hover:text-maincolor px-1 rounded-full"
+            class="absolute text-maincolor top-1/2 end-0 -translate-y-1/2 cursor-pointer hover:text-maincolor"
           >
-            <i
-              class="fas opacity-50"
-              [class]="pass.type === 'text' ? 'fa-eye' : 'fa-eye-slash'"
-            ></i>
+            <i class="fas" [class]="pass.type === 'text' ? 'fa-eye' : 'fa-eye-slash'"></i>
           </span>
         </div>
         @if (loginform.get('password')?.invalid && loginform.get('password')?.touched) {

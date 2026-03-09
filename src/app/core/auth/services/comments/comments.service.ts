@@ -43,4 +43,12 @@ export class CommentsService {
       this.headerToken,
     );
   }
+
+  updatecomment(postId: string, commId: string, body: any): Observable<any> {
+    return this.httpClient.put(
+      `${environment.baseUrl}/posts/${postId}/comments/${commId}`,
+      body,
+      this.headerToken,
+    );
+  }
 }

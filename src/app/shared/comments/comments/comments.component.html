@@ -43,6 +43,7 @@
                   <!-- edit post  -->
                   <li>
                     <a
+                      (click)="updatcomm(PostId, comment._id, comment.content)"
                       class="inline-flex items-center w-full p-2 hover:bg-secoundcolor/30 hover:font-bold hover:text-headcolor cursor-pointer rounded"
                       >edit comment</a
                     >

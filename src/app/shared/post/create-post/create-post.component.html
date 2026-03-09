@@ -21,7 +21,7 @@
 <section
   (click)="shmodul()"
   [class.hidden]="!showmainmodal"
-  class="hidden bg-black/30 min-w-full absolute top-0 left-0 min-h-full z-55"
+  class="hidden bg-black/30 min-w-full fixed top-0 left-0 min-h-full z-55"
 >
   <!-- Main modal -->
   <div
@@ -161,7 +161,7 @@
         >
           <div class="relative p-4 w-full max-h-full">
             <!-- Modal content -->
-            <div class="bg-secligter border border-secoundcolor rounded-base shadow-sm p-4 md:p-6">
+            <div class="bg-secligter rounded-base shadow shadow-maincolor/50 p-4 md:p-6">
               <!-- Modal header -->
               <div class="flex items-center justify-between border-b border-secligter pb-4 md:pb-5">
                 <h3 class="text-lg font-medium text-maincolor">Terms of Service</h3>

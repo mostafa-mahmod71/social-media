@@ -1,64 +1,90 @@
-<section
-  class="max-w-5xl mx-auto bg-white dark:bg-gray-900 rounded-lg shadow-sm overflow-hidden mt-6 border border-gray-100 dark:border-gray-800"
->
-  <!-- Cover Image Section -->
-  <div class="relative h-48 md:h-64 bg-gray-200">
+<section class="max-w-5xl mx-auto bg-secoundcolor rounded-lg shadow-md overflow-hidden mt-5">
+  <!-- Cover  -->
+  <div class="relative h-48 md:h-64 bg-secoundcolor">
     <img
-      [src]="Userinfo.cover || 'https://via.placeholder.com'"
-      alt="Cover Image"
+      [src]="profileData?.cover || '/assets social/imgs/clouds-g118893a4a_1920.jpg'"
+      [alt]="profileData?.name"
       class="w-full h-full object-cover"
     />
 
-    <!-- زرار تغيير الكوفر (أيقونة بس عشان البساطة) -->
     <button
-      class="absolute bottom-4 right-4 bg-white/90 hover:bg-white p-2.5 rounded-full shadow-lg transition-all border border-gray-200"
+      class="absolute bottom-4 right-4 bg-secligter/90 hover:bg-secligter cursor-pointer p-2.5 rounded-full shadow-lg transition-all border border-gray-200"
     >
-      <i class="fa-solid fa-camera text-gray-700"></i>
+      <i class="fa-solid fa-camera text-maincolor/70"></i>
     </button>
   </div>
 
-  <!-- Profile Header Info -->
+  <!-- Profile  -->
   <div class="relative px-6 pb-8">
     <div class="flex flex-col md:flex-row items-center md:items-end -mt-16 md:-mt-20 md:space-x-6">
       <!-- Profile Image -->
       <div class="relative group">
         <img
-          [src]="Userinfo.photo || 'https://via.placeholder.com'"
-          alt="Profile Image"
-          class="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-white dark:border-gray-900 shadow-xl object-cover bg-gray-100"
+          [src]="profileData?.photo"
+          [alt]="profileData?.name"
+          class="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-secligter shadow-xl object-cover bg-secoundcolor"
         />
         <div
-          class="absolute inset-0 bg-black/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 cursor-pointer transition-all duration-300"
+          class="absolute inset-0 bg-maincolor/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
         >
-          <i class="fa-solid fa-camera text-white text-2xl"></i>
+          <label for="profile" class="cursor-pointer">
+            <i class="fa-solid fa-camera text-secoundcolor text-2xl"></i>
+          </label>
+          <input id="profile" class="hidden" type="file" (change)="upProfilePhoto($event)" />
         </div>
       </div>
 
       <!-- Name & Email -->
       <div class="mt-4 md:mt-0 text-center md:text-left flex-1 pb-2">
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
-          {{ Userinfo.name }}
-        </h1>
-        <p class="text-gray-500 dark:text-gray-400 font-medium text-lg">
-          {{ Userinfo.email }}
-        </p>
+        <div>
+          <h1 class="text-3xl font-extrabold text-headcolor">{{ profileData?.name }}</h1>
+          <p class="text-headcolor/60 font-medium text-lg">@{{ profileData?.username }}</p>
+        </div>
+        <div class="flex gap-x-5 text-headcolor/40">
+          <span>followers: {{ profileData?.followersCount }}</span>
+          <span>following: {{ profileData?.followingCount }}</span>
+        </div>
       </div>
+    </div>
 
-      <!-- Simple Action (Optional) -->
-      <div class="hidden md:flex pb-4">
-        <button class="text-gray-400 hover:text-gray-600 transition-colors">
-          <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
-        </button>
+    <!-- err msg  -->
+
+    <div
+      [class.hidden]="!errUpload"
+      id="alert-2"
+      class="flex mt-5 sm:items-center p-4 mb-4 text-sm text-fg-danger-strong rounded-full bg-danger-soft"
+      role="alert"
+    >
+      <svg
+        class="w-4 h-4 shrink-0 mt-0.5 md:mt-0"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+        />
+      </svg>
+      <span class="sr-only">Info</span>
+      <div class="ms-2 text-sm">
+        {{ errUpload }}
       </div>
     </div>
   </div>
 </section>
 
 <!-- Timeline Section -->
-<div class="max-w-2xl mx-auto mt-8 px-4">
-  <div class="flex items-center space-x-2 mb-6 border-b border-gray-200 dark:border-gray-800 pb-2">
+<div class="w-9/10 md:w-8/10 mx-auto mt-8 px-4">
+  <div class="flex items-center space-x-2 mb-6 border-b border-secligter pb-2">
     <span
-      class="font-bold text-gray-800 dark:text-gray-100 border-b-2 px-4 py-2"
+      class="font-bold text-headcolor/70 border-b-2 px-4 py-2"
       style="border-color: var(--main-color); color: var(--main-color)"
     >
       Your Timeline
@@ -66,18 +92,4 @@
   </div>
   <app-create-post></app-create-post>
   <app-profileposts></app-profileposts>
-  <!-- Empty State لو مفيش بوستات -->
-  <!-- <div
-    class="text-center py-16 bg-white dark:bg-gray-900 rounded-xl border border-dashed border-gray-300 dark:border-gray-700"
-  >
-    <div
-      class="bg-gray-50 dark:bg-gray-800 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-    >
-      <i class="fa-solid fa-images text-2xl text-gray-400"></i>
-    </div>
-    <h3 class="text-gray-900 dark:text-white font-semibold">No posts yet</h3>
-    <p class="text-gray-500 text-sm mt-1">
-      When you share photos, they will appear on your profile.
-    </p>
-  </div> -->
 </div>

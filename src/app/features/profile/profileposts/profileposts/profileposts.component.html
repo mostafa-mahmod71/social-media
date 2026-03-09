@@ -52,6 +52,7 @@
                   <!-- edit post  -->
                   <li>
                     <a
+                      (click)="updatePost(post._id, post.body, post.image)"
                       class="inline-flex items-center w-full p-2 hover:bg-secoundcolor/30 hover:font-bold hover:text-headcolor cursor-pointer rounded"
                       >edit post</a
                     >

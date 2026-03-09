@@ -84,4 +84,25 @@ export class ProfilepostsComponent implements OnInit {
       },
     });
   }
+
+  /// update
+
+  updatePost(postId: string, postbody: string, img: any) {
+    const newbody = prompt('edit post description', postbody);
+    const formdata = new FormData();
+    if (newbody) {
+      formdata.append('body', newbody);
+    }
+    if (img.files) {
+      formdata.append('image', img);
+    }
+    this.postsService.updatepost(formdata, postId).subscribe({
+      next: (res) => {
+        this.getAllPosts();
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

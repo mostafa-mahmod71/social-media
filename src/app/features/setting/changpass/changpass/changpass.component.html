@@ -5,13 +5,13 @@
       formControlName="password"
       type="password"
       placeholder="Current Password"
-      class="p-2 rounded-base bg-secoundcolor/30 ring-0 border-transparent focus:border-maincolor/30"
+      class="p-2 rounded-base bg-secoundcolor/30 ring-0 border-2 border-maincolor/20 focus:border-maincolor/40"
     />
     <input
       formControlName="newPassword"
       type="password"
       placeholder="New Password"
-      class="p-2 rounded-base bg-secoundcolor/30 ring-0 border-transparent focus:border-maincolor/30"
+      class="p-2 rounded-base bg-secoundcolor/30 ring-0 border-2 border-maincolor/20 focus:border-maincolor/40"
     />
     @if (changePass.get('newPassword')?.invalid && changePass.get('newPassword')?.touched) {
       <div

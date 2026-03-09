@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Userinfo } from '../../../userinfo.interface';
 @Component({
@@ -8,7 +16,9 @@ import { Userinfo } from '../../../userinfo.interface';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements AfterViewInit {
+  private readonly eRef = inject(ElementRef);
   private readonly router = inject(Router);
+
   // classes when scrooling for thenavbar
   @ViewChild('marksec') marcsec!: ElementRef;
   isscrolled: boolean = false;
@@ -24,6 +34,12 @@ export class NavbarComponent implements AfterViewInit {
 
   showdrop: boolean = false;
   showlogoutmodul: boolean = false;
+  @HostListener('document:click', ['$event'])
+  clickout(event: Event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.showdrop = false;
+    }
+  }
   confirmlogout: boolean = false;
   userinfo: Userinfo = JSON.parse(localStorage.getItem('socialUser') || '{}');
   logout(): void {
